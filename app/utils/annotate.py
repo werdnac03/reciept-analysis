@@ -1,5 +1,5 @@
 from PIL import Image, ImageDraw, ImageFont
-import json
+import json, os
 from app.utils.image_processing import img_pre_process
 
 
@@ -48,13 +48,28 @@ def read_json(path: str) -> dict:
         data = json.load(f)
     return data
 
+def draw_all_bbox_with_label(json_path: str, img_path: str, out_dir: str):
+    try:
+        os.mkdir(out_dir)     # try to make the folder
+    except FileExistsError:
+        # already exists → do nothing
+        pass
+
+    data = read_json(json_path)
+    for key in data:
+        img_name = key
+        img_name = img_name.replace(" ", "_").replace(".", "")
+        out_path = out_dir + "/" + f"{img_name}" + ".jpg"
+        bbox = data[key][0]
+        draw_bbox_with_label(img_path, bbox, key, out_path)
+
 
 if __name__ == "__main__":
 
     #json_path = "/home/andrewcheng/reciept-analysis/json-outs/r1-single-6"
     #json_path = "/home/andrewcheng/reciept-analysis/json-outs/r2-single-4"
     json_path = "/home/andrewcheng/reciept-analysis/json-outs/r2-2"
-    #img_path = "/home/andrewcheng/reciept-analysis/src/reciept1.PNG"
+    #img_path = "/home/andrewcheng/reciept-analysis/src/receipt1.PNG"
     img_path = "/home/andrewcheng/reciept-analysis/src/receipt2.png"
     out_dir = "/home/andrewcheng/reciept-analysis/annotated_labels"
     data = read_json(json_path)
