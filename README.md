@@ -6,6 +6,7 @@ deactivate venv -> deactivate
 to run -> python3 -m app.utils.main
 
 #gpt generated file structure
+'''
 your_app/
 ├─ app/
 │  ├─ __init__.py          # app factory; registers blueprints, extensions
@@ -37,3 +38,4 @@ your_app/
 ├─ requirements.txt        # or pyproject.toml if you prefer Poetry
 ├─ run.py                  # simple entrypoint (or use `flask run`)
 └─ README.md
+'''
