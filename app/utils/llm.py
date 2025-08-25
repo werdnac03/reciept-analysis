@@ -3,7 +3,8 @@ import os, json
 from app.models.receipt_content import Word, Phrase
 from openai import OpenAI
 
-load_dotenv(dotenv_path="/home/andrewcheng/reciept-analysis/.env")
+# load_dotenv(dotenv_path=".env")
+load_dotenv()
 OPENAI_KEY = os.getenv("OPENAI_KEY")
 SYSTEM_PROMPT = (
 "You are a strict receipt parser. You will receive OCR phrases with bounding boxes.\n"

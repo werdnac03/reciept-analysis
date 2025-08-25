@@ -1,5 +1,5 @@
 from app.models.receipt_content import Word, Phrase
-from app.utils.image_processing import img_pre_process
+from app.utils.image_processing import img_pre_process, img_pre_process_PIL
 import pytesseract
 from pytesseract import Output
 from collections import defaultdict
@@ -37,6 +37,40 @@ def ocr_words(image_path: str, psm: int) -> list[Word]:
         )
         words.append(w)
     return words
+
+def ocr_words_PIL(image_pil, psm: int) -> list[Word]:
+    img = img_pre_process_PIL(image_pil)
+    
+    cfg = f"--oem 3 --psm {psm}"
+    data = pytesseract.image_to_data(img, output_type=Output.DICT, config=cfg)
+
+    words: list[Word] = []
+    n = len(data["text"])
+    for i in range(n):
+        txt = (data["text"][i] or "").strip()
+        # removes blanks
+        if not txt:
+            continue
+        conf = float(data.get("conf", [0]*n)[i])
+        #if conf < 0:  # Tesseract uses -1 for non-words
+        #    continue
+        w = Word(
+            text=txt,
+            left=int(data["left"][i]),
+            top=int(data["top"][i]),
+            width=int(data["width"][i]),
+            height=int(data["height"][i]),
+            conf=conf,
+            ids=(
+                int(data.get("page_num")[i]),
+                int(data.get("block_num")[i]),
+                int(data.get("par_num")[i]),
+                int(data.get("line_num")[i]),
+            ),
+        )
+        words.append(w)
+    return words
+
 
 #
 def line_key(w: Word): return w.ids

@@ -20,14 +20,14 @@ if __name__ == "__main__":
     img_suffix = "receipt1"
     f_type = ".PNG"
     prompt = "2.0-best"
-    annotate = True
+    annotate = False
 
     #----------------
     
     
-    img_path = '/home/andrewcheng/reciept-analysis/src/' + img_suffix + f_type
-    json_path = "/home/andrewcheng/reciept-analysis/json-outs/" + img_suffix + "-" + prompt
-    out_dir = "/home/andrewcheng/reciept-analysis/annotated_labels/" + img_suffix + "-" + prompt
+    img_path = 'src/' + img_suffix + f_type
+    json_path = "json-outs/" + img_suffix + "-" + prompt
+    out_dir = "annotated_labels/" + img_suffix + "-" + prompt
     
     if annotate:
         draw_all_bbox_with_label(json_path, img_path, out_dir)
