@@ -1,5 +1,5 @@
 {
-  "P4. Rare Steak, Brisket and": [
+  "Rare Steak, Brisket and Flank Pho (Phé Tai Nam Gau)": [
     [
       22,
       415,
@@ -9,52 +9,32 @@
     1,
     18.95
   ],
-  "Flank Pho (Phé Tai Nam Gau) Regular Noodle": [
-    [
-      22,
-      429,
-      214,
-      466
-    ],
-    1,
-    18.95
-  ],
-  "2, Rare Steak and Welldone": [
+  "Rare Steak and Welldone Pho (Phé Tai Thit Chin)": [
     [
       22,
       470,
       356,
       482
     ],
-    2,
+    1,
     18.95
   ],
-  "Pho (Phd Tai Thit Chin) Fresh Noodle": [
-    [
-      22,
-      489,
-      214,
-      519
-    ],
-    1,
-    19.45
-  ],
-  "P1. Combination Beef Pho (Pho Bo DB) Fresh Noodle": [
+  "Combination Beef Pho (Pho Bo DB)": [
     [
       22,
       524,
-      223,
-      576
+      356,
+      539
     ],
     1,
     19.45
   ],
-  "P8. Rare Steak & Boneless Short Rib Meat Pho (Phé Tai Thit Sudn) Regular Noodle": [
+  "Rare Steak & Boneless Short Rib Meat Pho (Phé TSi Thit Sudn)": [
     [
       22,
       584,
-      204,
-      654
+      356,
+      595
     ],
     1,
     19.35
