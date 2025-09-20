@@ -1,0 +1,22 @@
+services:
+  app:
+    image: flask-api
+    environment:
+      OPENAI_KEY: ${OPENAI_KEY}
+    ports:
+      - "8085:8085"
+
+  db:
+    image: postgres:16.9
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - db_space:/var/lib/postgresql/data
+      - ./db/init_db.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5434:5432"
+
+
+volumes:
+  db_space:
