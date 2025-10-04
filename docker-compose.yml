@@ -1,11 +1,5 @@
 services:
-  app:
-    image: flask-api
-    environment:
-      OPENAI_KEY: ${OPENAI_KEY}
-    ports:
-      - "8085:8085"
-
+  # Creates a postgres database container (User: postgres, Password: mysecretpassword DB: postgres)
   db:
     image: postgres:16.9
     environment:
