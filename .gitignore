@@ -2,6 +2,3 @@ annotated_labels/
 .env
 .venv/
 __pycache__/
-
-Log/
-Old/
