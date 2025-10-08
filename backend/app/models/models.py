@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import UniqueConstraint
 from ..extensions import db
+from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 share_receipts = db.Table(
@@ -42,9 +43,12 @@ class Receipt(db.Model):
     total_amount = db.Column(db.Numeric(12, 2))
     image_base64 = db.Column(db.Text)
     ocr_text = db.Column(db.Text)
+    status = db.Column(db.String(50), default="active")
+    date_modified = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
 
     creator = db.relationship("User", back_populates="receipts_created")
-    items = db.relationship("Item", back_populates="receipt")
+    items = db.relationship("Item", back_populates="receipt", cascade="all, delete-orphan", passive_deletes=True)
     shared_with_users = db.relationship("User", secondary=share_receipts, back_populates="shared_receipts")
     item_ownerships = db.relationship("ItemOwnership", back_populates="receipt")
     transactions = db.relationship("Transaction", back_populates="receipt")

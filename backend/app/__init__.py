@@ -3,9 +3,8 @@ from .extensions import db, migrate
 
 # Blueprints
 from .routes.auth import bp as auth_bp
-
-from .routes.user import bp as user_bp
-from .routes.internal_testing import bp as internal_testing_bp
+from .routes.receipts import bp as receipts_bp
+from .routes.items import bp as items_bp
 
 # Config
 from .config import Config
@@ -20,9 +19,9 @@ def create_app():
     from app import models  # Ensure models are imported for migrations
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
+    app.register_blueprint(receipts_bp, url_prefix="/api/receipts")
+    app.register_blueprint(items_bp, url_prefix="/api/items")
 
-    app.register_blueprint(user_bp, url_prefix="/accounts")
-    app.register_blueprint(internal_testing_bp, url_prefix="/internal-testing")
 
 
     @app.get("/")

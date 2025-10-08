@@ -3,6 +3,8 @@ from datetime import datetime, timedelta
 from flask import current_app, request, jsonify
 from functools import wraps
 
+from app.models.models import User
+
 def create_token(user_id):
     payload = {
         "user_id": user_id,
@@ -32,5 +34,9 @@ def token_required(f):
         if not data:
             return jsonify({"error": "Invalid or expired token"}), 401
 
-        return f(data["user_id"], *args, **kwargs)
+        user = User.query.get(data["user_id"])
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+
+        return f(user, *args, **kwargs)
     return decorated

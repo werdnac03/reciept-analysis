@@ -23,7 +23,7 @@ export default function Home() {
         if (!res.token) return setMessage("No token received");
 
         login(res.token);
-        navigate("/receipts");
+        navigate("/view-receipts");
       } else {
         if (!email) return setMessage("Email is required");
         const res = await registerUser(email, username, password);

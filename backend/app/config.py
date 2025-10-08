@@ -5,6 +5,7 @@ load_dotenv()
 
 class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", "dev_secret_key")
+    OPENAI_API_KEY = os.getenv("OPENAI_KEY", "")
     SQLALCHEMY_DATABASE_URI = (
         f"postgresql+psycopg2://{os.getenv('DB_USER')}:{os.getenv('DB_PASS')}"
         f"@{os.getenv('DB_HOST')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
